@@ -47,15 +47,16 @@ function getting_missing_fields(message){
     console.log('=== import finished ===');
     console.log('import_form:',import_form);
     save_output()
-    Symphony.sendMessage( message.stream.streamId, "The form is well imported.", null, Symphony.MESSAGEML_FORMAT);
-    Symphony.sendMessage( message.stream.streamId, "test\ntest\n", null, Symphony.MESSAGEML_FORMAT);
+    const output = format_output();
+    const reply = '<table>' + output.map(item => '<tr><td>' + item.name + '</td><td>' + item.value + '</td></tr>').join('') + '</table>'
+    Symphony.sendMessage( message.stream.streamId, "The form is well imported:<br/>", null, Symphony.MESSAGEML_FORMAT);
+    Symphony.sendMessage( message.stream.streamId, reply, null, Symphony.MESSAGEML_FORMAT);
     reset()
   }
 }
 
 const botHearsSomething = ( event, messages ) => {
     messages.forEach( (message, index) => {
-
       if(getting != null) {
         index_field_getting = import_form.findIndex(x => x.name==getting);
         var message_nlp = {};
