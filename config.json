@@ -7,7 +7,7 @@
     "podPort": 443,
     "agentHost": "develop2.symphony.com",
     "agentPort": 443,
-    "botCertPath": "/mnt/c/Users/Guiz/Code/symphony/test/apps/super_bot/certificates/",
+    "botCertPath": "/mnt/c/Users/Guiz/Code/symphony/test/apps/symphony-ic/certificates/",
     "botCertName": "bot.user75-all.pem",
     "botCertPassword": "changeit",
     "botEmailAddress": "bot.user75@example.com",
