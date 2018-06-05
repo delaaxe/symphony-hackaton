@@ -1,11 +1,24 @@
 const Symphony = require('symphony-api-client-node');
+const recastai = require('recastai');
+const client = new recastai.request('512032aa56aa69d2281f16b8644deeae');
+var message_queue = [];
 
 const botHearsSomething = ( event, messages ) => {
     messages.forEach( (message, index) => {
-      let reply_message = 'Message: ' + JSON.stringify(message) + '\n Event: ' + JSON.stringify(event);
-      console.log(message)
-      console.log(event)
-      Symphony.sendMessage( message.stream.streamId, reply_message, null, Symphony.MESSAGEML_FORMAT);
+      if (message.messageText == '!import'){
+        // import the message queue
+        
+      }else{
+        client.converseText(message.messageText)
+        .then(function(res) {
+          var message_nlp = {};
+          message_nlp.original = message;
+          message_nlp.nlp = res.entities;
+          message_queue.push(message_nlp);
+          console.log(res.entities)
+          Symphony.sendMessage( message.stream.streamId, JSON.stringify(res.entities), null, Symphony.MESSAGEML_FORMAT);
+        })
+      }
     })
 }
 
