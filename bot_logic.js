@@ -7,11 +7,6 @@ class Bot {
         this.logger= new Log();  
         this.NLP = null;
         this.answer = null
-        
-        // Symphony.initBot(__dirname + '/config.json')
-        // .then( (symAuth) => {
-        //     Symphony.getDatafeedEventsService(this.read);
-        // })
     }
 
     run() {
@@ -53,7 +48,6 @@ class Bot {
         var form = this.logger.getDefaultForm()
         form.forEach(field => {
             if (!field.value) {
-                // this.sendMessage(field.question)
                 if(!this.answer) {
                     Symphony.sendMessage(message.stream.streamId, field.question, null, Symphony.MESSAGEML_FORMAT);
                     this.answer = field.name

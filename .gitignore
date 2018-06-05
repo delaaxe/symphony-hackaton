@@ -1,2 +1,3 @@
 /certificates/*.pem
 /node_modules/
+config.json
